@@ -30,13 +30,15 @@
                     <a :href="link" target="_blank">
                         {{ product }}
                     </a>
-
+                    <p v-if="OnSale">On Sale!</p>
+                    <p v-else>Not on Sale</p>
+                    
                     <p v-if="inventory > 10">In Stock</p>
                     <p v-else-if="inventory <= 10 && inventory > 0">Almost out
                         of Stock</p>
                     <p v-else>Out of Stock</p>
-                    <p v-if="OnSale">On Sale!</p>
-                    <p v-else>Not on Sale</p>
+
+                    
                     <ul>
                         <li v-for="detail in details">{{ detail }}</li>
                     </ul>
@@ -44,10 +46,9 @@
                         style="margin-right: 8px;">
                         {{ size }}
                     </span>
-                    <div v-for="variant in variants" :key="variant.id " @mouseover="updateImage(variant.image)">
-                        {{ variant.color }}
+                    <div v-for="variant in variants" :key="variant.id " @mouseover="updateImage(variant.image)" class="color-circle" :style="{ backgroundColor: variant.color }">
                     </div>
-                    <button @click="addToCart">
+                    <button :disabled="!inStock" @click="addToCart">
                         Add to Cart
                     </button>
                     <button @click="updateinSale" >

@@ -7,7 +7,7 @@ createApp(({
         const link = ref('https://www.camt.cmu.ac.th./')
         const inStock = ref(true)
         const inventory = ref(100)
-        const OnSale = ref(false)
+        const OnSale = ref(true)
         const details = ref([
             '50% cotton',
             '30% wool',
@@ -33,6 +33,7 @@ createApp(({
                 inventory.value = 100;
             }
         }
+        
         return {
             product,
             image,
