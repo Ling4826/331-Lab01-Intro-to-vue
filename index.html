@@ -16,7 +16,8 @@
         <div class="cart">
             <p>Cart({{ cart }})</p>
         </div>
-        <product-display :premium="premium"></product-display>
+        <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
+
     </div>
     <!-- Import Js -->
     <script src="./components/ProductDetails.js"></script>
