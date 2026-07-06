@@ -44,13 +44,14 @@
                         style="margin-right: 8px;">
                         {{ size }}
                     </span>
-                    <div v-for="variant in variants" :key="variant.id ">
+                    <div v-for="variant in variants" :key="variant.id " @mouseover="updateImage(variant.image)">
                         {{ variant.color }}
                     </div>
-
-                    <button @click="addToCart" :disabled="!inStock"
-                        :class="{ disabledButton: !inStock }">
+                    <button @click="addToCart">
                         Add to Cart
+                    </button>
+                    <button @click="updateinSale" >
+                        Update Sale Status
                     </button>
                 </div>
             </div>
