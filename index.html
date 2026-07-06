@@ -30,34 +30,35 @@
                     <a :href="link" target="_blank">
                         {{ product }}
                     </a>
-                    <p v-if="OnSale">On Sale!</p>
-                    <p v-else>Not on Sale</p>
-                    
-                    <p v-if="inventory > 10">In Stock</p>
-                    <p v-else-if="inventory <= 10 && inventory > 0">Almost out
-                        of Stock</p>
-                    <p v-else>Out of Stock</p>
+                </h1>
+                <p v-if="OnSale">On Sale!</p>
+                <p v-else>Not on Sale</p>
 
-                    
-                    <ul>
-                        <li v-for="detail in details">{{ detail }}</li>
-                    </ul>
-                    <span v-for="size in size " :key="size"
-                        style="margin-right: 8px;">
-                        {{ size }}
-                    </span>
-                    <div v-for="variant in variants" :key="variant.id " @mouseover="updateImage(variant.image)" class="color-circle" :style="{ backgroundColor: variant.color }">
-                    </div>
-                    <button :disabled="!inStock" @click="addToCart">
-                        Add to Cart
-                    </button>
-                    <button @click="updateinSale" >
-                        Update Sale Status
-                    </button>
+                <p v-if="inventory > 10">In Stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost out
+                    of Stock</p>
+                <p v-else>Out of Stock</p>
+
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+                <span v-for="s in size" :key="s" style="margin-right: 8px;">
+                    {{ s }}
+                </span>
+                <div v-for="variant in variants" :key="variant.id "
+                    @mouseover="updateImage(variant.image)" class="color-circle"
+                    :style="{ backgroundColor: variant.color }">
                 </div>
+                <button :disabled="!inStock" @click="addToCart" :class="{ disabledButton: !inStock }">
+                    Add to Cart
+                </button>
+                <button @click="updateinSale">
+                    Update Sale Status
+                </button>
             </div>
-            <!-- Import Js -->
-            <script src="./main.js"></script>
-        </body>
+        </div>
+        <!-- Import Js -->
+        <script src="./main.js"></script>
+    </body>
 
-    </html>
+</html>

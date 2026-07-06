@@ -28,9 +28,13 @@ createApp(({
         function updateinSale() {
             if(inventory.value > 0) {
                 inventory.value = 0;
+                inStock.value = false;
+                OnSale.value = false;
             }
             else {
                 inventory.value = 100;
+                inStock.value = true;
+                OnSale.value = true;
             }
         }
         
