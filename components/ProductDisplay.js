@@ -23,6 +23,8 @@ const productDisplay = {
 			</div>
 			<button class="button" :disabled='!inStock' @click="addToCart"
 				:class="{disabledButton: !inStock}">Add To Cart</button>
+            <review-form></review-form>
+
 		</div>
 	</div>
 	`,
