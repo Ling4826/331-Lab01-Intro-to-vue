@@ -23,7 +23,9 @@ const productDisplay = {
 			</div>
 			<button class="button" :disabled='!inStock' @click="addToCart"
 				:class="{disabledButton: !inStock}">Add To Cart</button>
-            <review-form></review-form>
+            <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+            <review-form @review-submitted="addReview"></review-form>
+
 
 		</div>
 	</div>
@@ -78,6 +80,13 @@ const productDisplay = {
             }
         })
 
+        const reviews = ref([])
+
+        function addReview(review) {
+            reviews.value.push(review)
+        }
+
+
         return {
             title,
             image,
@@ -86,7 +95,9 @@ const productDisplay = {
             variants,
             addToCart,
             updateVariant,
-            shipping
+            shipping,
+            reviews,
+            addReview
         }
     }
 }

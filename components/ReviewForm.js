@@ -2,8 +2,8 @@ const { reactive } = Vue
 
 const reviewForm = {
     template:
-    /*html*/
-    `<form class="review-form" @submit.prevent="onSubmit">
+        /*html*/
+        `<form class="review-form" @submit.prevent="onSubmit">
         <h3>Leave a review</h3>
         <label for="name">Name:</label>
         <input id="name" v-model="form.name">
@@ -20,27 +20,41 @@ const reviewForm = {
             <option>1</option>
         </select>
 
+        <label for="recommend">Would you recommend this product?</label>
+        <select id="recommend" v-model="form.recommend">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+
         <input class="button" type="submit" value="Submit">
+
     </form>`,
     setup(props, { emit }) {
         const form = reactive({
             name: '',
             review: '',
-            rating: null
+            rating: null,
+            recommend: null
         })
 
         function onSubmit() {
+            if (form.name === '' || form.review === '' || form.rating === null || form.recommend === null) {
+                alert('Review is incomplete. Please fill out every field.')
+                return
+            }
+
             const productReview = {
                 name: form.name,
                 review: form.review,
-                rating: form.rating
+                rating: form.rating,
+                recommend: form.recommend
             }
             emit('review-submitted', productReview)
-            
-            // ล้างค่าฟอร์มหลังจากกด Submit
+
             form.name = ''
             form.review = ''
             form.rating = null
+            form.recommend = null
         }
 
         return {
