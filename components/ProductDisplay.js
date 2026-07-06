@@ -71,7 +71,6 @@ const productDisplay = {
             title,
             image,
             inStock,
-            inventory,
             details,
             variants,
             addToCart,
