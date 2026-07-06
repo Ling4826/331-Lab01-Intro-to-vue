@@ -1,5 +1,4 @@
 const productDisplay = {
-
     template:
         /*html*/
         `
@@ -11,9 +10,11 @@ const productDisplay = {
 		</div>
 		<div class="product-info">
 			<h1>{{title}}</h1>
-			<p v-if="inventory > 10">In Stock</p>
-			<p v-else-if="inventory <= 10 && inventory > 0">Almost out of Stock</p>
+            <p>Shipping: {{ shipping }}</p>
+			
+			<p v-if="inStock">In Stock</p>
 			<p v-else>Out of Stock</p>
+			
 			<ul>
 				<li v-for="detail in details">{{detail}}</li>
 			</ul>
@@ -25,12 +26,12 @@ const productDisplay = {
 		</div>
 	</div>
 	`,
-
-    setup() {
+    props: {
+        premium: Boolean
+    },
+    setup(props) {
         const product = ref('Boots')
         const brand = ref('SE 331')
-        // const image = ref('./assets/images/socks_green.jpg')
-        // const inStock = ref(true)
         const details = ref([
             '50% cotton',
             '30% wool',
@@ -52,7 +53,7 @@ const productDisplay = {
         })
 
         const inStock = computed(() => {
-            return variants.value[selectedVariant.value].quantity
+            return variants.value[selectedVariant.value].quantity > 0
         })
 
         function addToCart() {
@@ -63,9 +64,13 @@ const productDisplay = {
             return brand.value + ' ' + product.value
         })
 
-        function updateImage(variantImage) {
-            image.value = variantImage
-        }
+        const shipping = computed(() => {
+            if (props.premium) {
+                return "Free"
+            } else {
+                return 30
+            }
+        })
 
         return {
             title,
@@ -74,8 +79,8 @@ const productDisplay = {
             details,
             variants,
             addToCart,
-            updateImage,
-            updateVariant
+            updateVariant,
+            shipping
         }
     }
 }
