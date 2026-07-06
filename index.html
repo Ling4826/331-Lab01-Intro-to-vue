@@ -29,19 +29,21 @@
                     </a>
 
                     <p v-if="inventory > 10">In Stock</p>
-                    <p v-else-if="inventory <= 10 && inventory > 0">Almost out of Stock</p>
+                    <p v-else-if="inventory <= 10 && inventory > 0">Almost out
+                        of Stock</p>
                     <p v-else>Out of Stock</p>
                     <p v-if="OnSale">On Sale!</p>
                     <p v-else>Not on Sale</p>
                     <ul>
                         <li v-for="detail in details">{{ detail }}</li>
                     </ul>
-                    
-                </h1>
+                    <div v-for="variant in variants" :key="variant.id ">
+                            {{ variant.color }}
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Import Js -->
-        <script src="./main.js"></script>
-    </body>
+            <!-- Import Js -->
+            <script src="./main.js"></script>
+        </body>
 
-</html>
+    </html>
