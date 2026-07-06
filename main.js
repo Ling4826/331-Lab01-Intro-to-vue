@@ -3,6 +3,7 @@ const { createApp, ref } = Vue
 createApp(({
     setup() {
         const product = ref('imon')
+        const brand = ref('SE 331')
         const image = ref('./assets/images/socks_blue.jpg')
         const link = ref('https://www.camt.cmu.ac.th./')
         const inStock = ref(true)
@@ -26,7 +27,7 @@ createApp(({
             image.value = variantImage
         }
         function updateinSale() {
-            if(inventory.value > 0) {
+            if (inventory.value > 0) {
                 inventory.value = 0;
                 inStock.value = false;
                 OnSale.value = false;
@@ -37,9 +38,10 @@ createApp(({
                 OnSale.value = true;
             }
         }
-        
+
         return {
             product,
+            brand,
             image,
             link,
             inStock,
@@ -52,8 +54,7 @@ createApp(({
             addToCart,
             updateImage,
             updateinSale
-            
+
         }
     }
 })).mount('#app')
-   
