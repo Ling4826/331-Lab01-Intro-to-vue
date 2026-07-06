@@ -13,10 +13,15 @@ createApp(({
             '30% wool',
             '20% polyester'
         ])
+        const size = ref(['S', 'M', 'L'])
         const variants = ref([
             { id: 2234, color: 'green'},
             { id: 2235, color: 'blue'}
         ])
+        const cart = ref(0)
+        function addToCart() {
+            cart.value += 1
+        }
         return {
             product,
             image,
@@ -25,7 +30,10 @@ createApp(({
             inventory,
             OnSale,
             details,
-            variants
+            variants,
+            size,
+            cart,
+            addToCart
         }
     }
 })).mount('#app')

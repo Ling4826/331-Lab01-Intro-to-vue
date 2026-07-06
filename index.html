@@ -13,6 +13,9 @@
     <body>
         <div id="app">
             <div class="nav-bar"></div>
+            <div class="cart">
+                <p>Cart({{ cart }})</p>
+            </div>
             <div class="product-display">
                 <div class="product-container">
                     <div class="product-image">
@@ -37,9 +40,18 @@
                     <ul>
                         <li v-for="detail in details">{{ detail }}</li>
                     </ul>
+                    <span v-for="size in size " :key="size"
+                        style="margin-right: 8px;">
+                        {{ size }}
+                    </span>
                     <div v-for="variant in variants" :key="variant.id ">
-                            {{ variant.color }}
+                        {{ variant.color }}
                     </div>
+
+                    <button @click="addToCart" :disabled="!inStock"
+                        :class="{ disabledButton: !inStock }">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
             <!-- Import Js -->
